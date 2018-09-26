@@ -97,8 +97,8 @@ export function clearLocalNotification() {
 
 export function createNotification() {
     return{
-        title:"Take your dose of cards for today!",
-        body:"You haven't taken even one Quiz today!",
+        title:"Take the Quiz!",
+        body:"👋 You haven't taken any Quiz today!",
         android:{
             sound:true,
             priority:'high',
