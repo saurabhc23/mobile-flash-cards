@@ -11,7 +11,7 @@ class Result extends React.Component{
     }
     componentDidMount(){
         this.setState({
-            percentage:this.props.navigation.state.params.score/this.props.navigation.state.params.maximum * 100
+            percentage:this.props.navigation.state.params.score/this.props.navigation.state.params.cardcount * 100
         })
     }
     render(){
@@ -20,7 +20,7 @@ class Result extends React.Component{
             <View style={styles.container}>
                 <Text style={{textAlign:'center'}}> You have scored: </Text>
                 <View style={styles.score}>
-                    <Text style={{textAlign:'center',fontSize:64}}>{this.props.navigation.state.params.score} out of {this.props.navigation.state.params.maximum}</Text>
+                    <Text style={{textAlign:'center',fontSize:24}}>{this.props.navigation.state.params.score} out of {this.props.navigation.state.params.cardcount}</Text>
                 </View>
                 <View>
                     <Text style={{textAlign:'center'}}>Percentage: {this.state.percentage} %</Text>

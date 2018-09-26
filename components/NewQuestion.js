@@ -33,7 +33,7 @@ class NewQuestion extends React.Component{
                         this.props.navigation.navigate('Deck',{card:this.props.navigation.state.params.card,count:this.props.navigation.state.params.count+1})
                     }}
                 >
-                    <Text style={{color:'white'}}>Submit</Text>
+                    <Text style={{color:white}}>Submit</Text>
                 </TouchableOpacity>
             </View>
         )

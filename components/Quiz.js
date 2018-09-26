@@ -28,7 +28,7 @@ class Quiz extends React.Component{
         this.setState({
             showFinish:false
         },()=>{
-            this.props.navigation.navigate('Result',{score:this.state.correct,maximum:this.state.questions.length,card:this.props.navigation.state.params.card,count:this.props.navigation.state.params.count})
+            this.props.navigation.navigate('Result',{score:this.state.correct,cardcount:this.state.questions.length,card:this.props.navigation.state.params.card,count:this.props.navigation.state.params.count})
         })
     }
     render(){
