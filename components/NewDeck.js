@@ -26,7 +26,7 @@ class NewDeck extends React.Component{
                         })
                     }}
                 >
-                    <Text style={{color:'white'}}>Submit</Text>
+                    <Text style={{color:white}}>Submit</Text>
                 </TouchableOpacity>
             </View>
         )

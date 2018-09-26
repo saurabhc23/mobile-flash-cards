@@ -6,16 +6,7 @@ class Result extends React.Component{
     static navigationOptions=({navigation})=>({
         title:'Result'
     })
-    state={
-        percentage:0
-    }
-    componentDidMount(){
-        this.setState({
-            percentage:this.props.navigation.state.params.score/this.props.navigation.state.params.cardcount * 100
-        })
-    }
     render(){
-        console.log(this.props.navigation.state.params)
         return(
             <View style={styles.container}>
                 <Text style={{textAlign:'center'}}> You have scored: </Text>
@@ -23,7 +14,7 @@ class Result extends React.Component{
                     <Text style={{textAlign:'center',fontSize:24}}>{this.props.navigation.state.params.score} out of {this.props.navigation.state.params.cardcount}</Text>
                 </View>
                 <View>
-                    <Text style={{textAlign:'center'}}>Percentage: {this.state.percentage} %</Text>
+                    <Text style={{textAlign:'center'}}>Percentage: {this.props.navigation.state.params.score/this.props.navigation.state.params.cardcount * 100} %</Text>
                 </View>
                 <TouchableOpacity
                     onPress={()=>this.props.navigation.navigate('Deck',{card:this.props.navigation.state.params.card,count:this.props.navigation.state.params.count})}

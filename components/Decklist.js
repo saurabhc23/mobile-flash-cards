@@ -4,31 +4,28 @@ import {getDecks} from '../utils/api'
 import {AppLoading} from 'expo'
 
 class Decklist extends React.Component{
-    constructor(props){
-        super(props)
-        this.state={
+        state={
             cards:[{title:'',questions:[]}]
         }
-    }
-    fetchDecks=()=>{
+    componentWillMount(){
         getDecks().then(data=>{
-            //console.log(data)
             this.setState({
                 cards:Object.keys(data).map((key)=>(data[key]))
             })
-        }).catch(err=>console.error(err))
-    }
-    componentWillMount(){
-        this.fetchDecks()
+        })
     }
     componentDidUpdate(){
-        this.fetchDecks()
+        getDecks().then(data=>{
+            this.setState({
+                cards:Object.keys(data).map((key)=>(data[key]))
+            })
+        })
     }
     render(){
         const {cards}=this.state
         //console.log(this.state)
             return(
-                <ScrollView>
+                <View>
                     {cards.map(card=>(
                         <TouchableOpacity
                             style={styles.card}
@@ -39,7 +36,7 @@ class Decklist extends React.Component{
                             <Text>{card.questions.length} {(card.questions.length>1)?'cards':'card'}</Text>
                         </TouchableOpacity>
                     ))}
-                </ScrollView>
+                </View>
             )
 
 

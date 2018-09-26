@@ -10,18 +10,12 @@ class Deck extends React.Component {
     state={
                 questions:[]
     }
-    getDetails=()=>{
+    componentDidMount(){
         getDeck(this.props.navigation.state.params.card).then((data)=>{
             this.setState({
                 questions:data.questions
             })
         })
-    }
-    componentDidMount(){
-        this.getDetails()
-    }
-    onRefresh=()=>{
-        this.getDetails()
     }
     render() {
         return (
