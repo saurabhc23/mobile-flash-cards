@@ -102,10 +102,6 @@ function UdaciStatusBar({backgroundColor,...props}) {
 }
 
 export default class App extends React.Component {
-    // componentDidMount(){
-    //     console.log('Component Did Mount')
-    //     setLocalNotification()
-    // }
     render(){
         return (
             <View style={{flex:1}}>
@@ -119,7 +115,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: white,
     alignItems: 'center',
     justifyContent: 'center',
   }

@@ -51,7 +51,7 @@ const styles=StyleSheet.create({
         margin: 20,
     },
     buttonText:{
-        color:'white'
+        color: white
     }
 })
 

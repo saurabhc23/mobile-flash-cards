@@ -7,13 +7,6 @@ class Deck extends React.Component {
     static navigationOptions = ({navigation}) => ({
         title: `${navigation.state.params.card}`
     })
-    // state={
-    //     details:[
-    //         {
-    //             questions:[]
-    //         }
-    //     ]
-    // }
     state={
                 questions:[]
     }
