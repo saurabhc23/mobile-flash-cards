@@ -18,23 +18,25 @@ class Deck extends React.Component {
         })
     }
     render() {
+        const { navigation } = this.props
+        const { state, navigate } = navigation
         return (
             <View style={styles.page}>
                 <Text style={styles.title}>
-                    {this.props.navigation.state.params.card}
+                    {state.params.card}
                 </Text>
                 <Text>
-                        {this.props.navigation.state.params.count} cards in the deck
+                        {state.params.count} cards in the deck
                 </Text>
                     <TouchableOpacity
                         style={[styles.button,{backgroundColor:purple}]}
-                        onPress={()=>{this.props.navigation.navigate('NewQuestion',{card: this.props.navigation.state.params.card,count:this.state.questions.length})}}
+                        onPress={()=>{navigation.navigate('NewQuestion',{card: state.params.card,count:this.state.questions.length})}}
                     >
                         <Text style={{color:'white'}}>Add Card</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={[styles.button,{backgroundColor:purple}]}
-                        onPress={() => this.props.navigation.navigate('Quiz', {card:this.props.navigation.state.params.card,count:this.state.questions.length})}
+                        onPress={() => navigation.navigate('Quiz', {card:state.params.card,count:this.state.questions.length})}
                     >
                         <Text style={{color:'white'}}>Start Quiz</Text>
                     </TouchableOpacity>

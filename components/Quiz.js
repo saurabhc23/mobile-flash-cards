@@ -1,6 +1,6 @@
 import React from 'react'
 import {Text,View,StyleSheet,TouchableOpacity} from 'react-native'
-import {getDeck} from '../utils/api'
+import {getDeck,clearLocalNotification,setLocalNotification} from '../utils/api'
 import { purple, white } from '../utils/colors'
 
 class Quiz extends React.Component{
@@ -24,30 +24,34 @@ class Quiz extends React.Component{
             })
         })
     }
-    navigateToFinish=()=>{
+    navigateToFinish=(score)=>{
+        clearLocalNotification().then(setLocalNotification());
+        //const score =this.state.correct
         this.setState({
-            showFinish:false
+            showFinish:false,
+            currentQuestion:1,
+            correct:0
         },()=>{
-            this.props.navigation.navigate('Result',{score:this.state.correct,cardcount:this.state.questions.length,card:this.props.navigation.state.params.card,count:this.props.navigation.state.params.count})
+            this.props.navigation.navigate('Result',{score:score,cardcount:this.state.questions.length,card:this.props.navigation.state.params.card,count:this.props.navigation.state.params.count})
         })
     }
     render(){
         console.log(this.state)
-        const {currentQuestion,questions} = this.state
+        const {currentQuestion,questions, showAnswer} = this.state
         return(
             <View style={styles.container}>
                 <Text>
                     {currentQuestion + '/' + questions.length}
                 </Text>
                 <Text style={styles.question}>
-                    {(!this.state.showAnswer)?
+                    {(!showAnswer)?
                         (questions.length>0)&&
                         questions[currentQuestion-1].question
                         :questions[currentQuestion-1].answer
 
                     }
                 </Text>
-                {(this.state.showAnswer)?
+                {(showAnswer)?
                     <TouchableOpacity
                         onPress={()=>{this.setState({showAnswer:false})}}
                     >
@@ -73,7 +77,7 @@ class Quiz extends React.Component{
                                 correct:this.state.correct+1,
                                 showFinish:true
                             })
-                            this.navigateToFinish()
+                            this.navigateToFinish(this.state.correct+1)
                         }
                     }}
                 >
@@ -95,7 +99,7 @@ class Quiz extends React.Component{
                             this.setState({
                                 showFinish:true
                             })
-                            this.navigateToFinish()
+                            this.navigateToFinish(this.state.correct)
                         }
                     }}
                 >

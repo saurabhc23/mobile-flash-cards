@@ -7,23 +7,23 @@ class Decklist extends React.Component{
         state={
             cards:[{title:'',questions:[]}]
         }
-    componentWillMount(){
-        getDecks().then(data=>{
-            this.setState({
-                cards:Object.keys(data).map((key)=>(data[key]))
-            })
-        })
+
+        retrieveDecks=()=>{
+            getDecks().then(data=>{
+                //console.log(data)
+                this.setState({
+                    cards:Object.keys(data).map((key)=>(data[key]))
+                })
+            }).catch(err=>console.error(err))
+        }
+    componentDidMount(){
+       this.retrieveDecks()
     }
     componentDidUpdate(){
-        getDecks().then(data=>{
-            this.setState({
-                cards:Object.keys(data).map((key)=>(data[key]))
-            })
-        })
+        this.retrieveDecks()
     }
     render(){
         const {cards}=this.state
-        //console.log(this.state)
             return(
                 <View>
                     {cards.map(card=>(

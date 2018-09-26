@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, StatusBar, View } from 'react-native';
-import {TabNavigator,StackNavigator} from 'react-navigation'
+import { StyleSheet, StatusBar, View, Platform } from 'react-native';
+import {createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator} from 'react-navigation'
 import Decklist from './components/Decklist'
 import NewDeck from './components/NewDeck'
 import Deck from './components/Deck'
@@ -10,8 +10,9 @@ import Result from './components/Result'
 import NewQuestion from './components/NewQuestion'
 import { purple, white } from './utils/colors'
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'
+import {setLocalNotification} from './utils/api'
 
-const Tabs=TabNavigator({
+const Tabs=Platform.OS === 'ios'?createBottomTabNavigator({
     Decklist:{
         screen:Decklist,
         navigationOptions:{
@@ -41,9 +42,37 @@ const Tabs=TabNavigator({
             shadowOpacity: 1
           }
     }
+}):createMaterialTopTabNavigator({
+    Decklist:{
+        screen:Decklist,
+        navigationOptions:{
+            tabBarLabel:'Decks',
+        }
+    },
+    NewDeck:{
+        screen:NewDeck,
+        navigationOptions:{
+            tabBarLabel:'New Deck',
+        }
+    }
+},{
+    tabBarOptions:{
+        activeTintColor:white,
+        style: {
+            height: 56,
+            backgroundColor: purple,
+            shadowColor: 'rgba(0, 0, 0, 0.24)',
+            shadowOffset: {
+              width: 0,
+              height: 3
+            },
+            shadowRadius: 6,
+            shadowOpacity: 1
+          }
+    }
 })
 
-const MainNavigator=StackNavigator({
+const MainNavigator=createStackNavigator({
     Home:{
         screen:Tabs,
         navigationOptions:{
@@ -102,6 +131,10 @@ function UdaciStatusBar({backgroundColor,...props}) {
 }
 
 export default class App extends React.Component {
+
+    componentDidMount(){
+        setLocalNotification()
+    }
     render(){
         return (
             <View style={{flex:1}}>

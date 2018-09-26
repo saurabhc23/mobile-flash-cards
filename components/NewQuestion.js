@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text,View,StyleSheet,TouchableOpacity,TextInput} from 'react-native'
+import {KeyboardAvoidingView,Text, StyleSheet,TouchableOpacity,TextInput} from 'react-native'
 import {addCardToDeck} from '../utils/api'
 import { purple, white } from '../utils/colors'
 
@@ -13,7 +13,7 @@ class NewQuestion extends React.Component{
     }
     render(){
         return(
-            <View style={styles.container}>
+            <KeyboardAvoidingView style={styles.container}>
                 <TextInput
                     style={styles.input}
                     placeholder='Question'
@@ -35,7 +35,7 @@ class NewQuestion extends React.Component{
                 >
                     <Text style={{color:white}}>Submit</Text>
                 </TouchableOpacity>
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 }
